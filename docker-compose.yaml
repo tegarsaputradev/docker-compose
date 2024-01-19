@@ -25,7 +25,7 @@ services:
     networks:
       - mrrobot
   mysql:
-    image: mysql:5.7
+    image: mysql:latest
     container_name: db
     environment:
       MYSQL_ROOT_PASSWORD: 'P@ssw0rd'
@@ -45,15 +45,16 @@ services:
       - mysql
     environment:
       PMA_HOST: mysql
+      UPLOAD_LIMIT: 512M
     restart: always
     ports:
-      - 80:80
+      - 88:80
     networks:
       - mrrobot
 
   redis:
     image: redis:7-alpine
-    container_name: app-redis
+    container_name: redis
     restart: always
     ports:
       - 6379:6379
